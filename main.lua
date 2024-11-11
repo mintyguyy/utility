@@ -1,5 +1,5 @@
 --Tables
-local Util = {}
+Util = {}
 Util.notifications = {}
 Util.watermark = {}
 Util.functions = {}
@@ -52,5 +52,3 @@ function Util.notifications.new(textContent, duration , color)
         end
     end)
 end
-
-return Util
