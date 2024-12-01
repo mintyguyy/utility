@@ -4,6 +4,7 @@ util.functions = {}
 
 util.services.replicatedStorage = game:GetService("ReplicatedStorage")
 util.services.players = game:GetService("Players")
+util.services.runService = game:GetService("RunService")
 
 function util.functions:getPlayers()
     local players = {}
