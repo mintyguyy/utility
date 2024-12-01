@@ -14,5 +14,17 @@ function util.functions:getPlayers()
     end
     return players
 end
+function util.functions:getClosestPlayer()
+    local playerTable = util.functions:getPlayers()
+    local closestPlayer
+
+    for _, player in pairs(playerTable) do
+        local distance = (player.Character.PrimaryPart.Position - util.services.players.LocalPlayer.Character.PrimaryPart.Position).Magnitude
+        if distance < math.huge then
+            closestPlayer = player
+        end
+    end
+    return closestPlayer
+end
 
 return util
