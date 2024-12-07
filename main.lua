@@ -18,10 +18,12 @@ end
 function util.functions:getClosestPlayer()
     local playerTable = util.functions:getPlayers()
     local closestPlayer
+    local closestDistance = math.huge
 
     for _, player in pairs(playerTable) do
         local distance = (player.Character.PrimaryPart.Position - util.services.players.LocalPlayer.Character.PrimaryPart.Position).Magnitude
-        if distance < math.huge then
+        if distance < closestDistance then
+            closestDistance = distance
             closestPlayer = player
         end
     end
