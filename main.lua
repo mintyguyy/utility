@@ -8,7 +8,7 @@ util.services.runService = game:GetService("RunService")
 
 function util.functions:getPlayers()
     local players = {}
-    for _, player in pairs(util.services.players:GetPlayers()) do
+    for _, player in pairs(game:GetService("Players"):GetPlayers()) do
         if player ~= util.services.players.LocalPlayer and player.Character and player.Character.PrimaryPart then
             table.insert(players, player)
         end
