@@ -30,13 +30,13 @@ function util.functions:getClosestPlayer()
     return closestPlayer
 end
 function util.functions:findFunction(name)
-    local funcs = {}
+    local retfunc
     for _, func in pairs(getgc(true)) do
         if type(func) == "function" and getinfo(func).name == name and not isfunctionhooked(func) then
-            table.insert(funcs, func)
+            retfunc = func
         end
     end
-    return funcs
+    return retfunc
 end
 
 return util
