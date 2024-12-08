@@ -32,7 +32,7 @@ end
 function util.functions:findFunction(name)
     local retfunc
     for _, func in pairs(getgc(true)) do
-        if type(func) == "function" and getinfo(func).name == name and not isfunctionhooked(func) then
+        if type(func) == "function" and getinfo(func).name == name and isfunctionhooked(func) == false then
             retfunc = func
         end
     end
