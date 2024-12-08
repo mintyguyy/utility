@@ -6,7 +6,7 @@ util.services.replicatedStorage = game:GetService("ReplicatedStorage")
 util.services.players = game:GetService("Players")
 util.services.runService = game:GetService("RunService")
 
-function util.functions:getPlayers()
+local function util.functions:getPlayers()
     local players = {}
     for _, player in pairs(util.services.players:GetPlayers()) do
         if player ~= util.services.players.LocalPlayer and player.Character and player.Character.PrimaryPart then
@@ -15,7 +15,7 @@ function util.functions:getPlayers()
     end
     return players
 end
-function util.functions:getClosestPlayer()
+local function util.functions:getClosestPlayer()
     local playerTable = util.functions:getPlayers()
     local closestPlayer
     local closestDistance = math.huge
