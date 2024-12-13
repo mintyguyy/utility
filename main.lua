@@ -1,6 +1,9 @@
 util = {}
+util.variables = {}
 util.services = {}
 util.functions = {}
+
+util.variables.random = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "_", ",", "."}
 
 util.services.replicatedStorage = game:GetService("ReplicatedStorage")
 util.services.players = game:GetService("Players")
@@ -37,6 +40,23 @@ function util.functions:findFunction(name)
         end
     end
     return retfunc
+end
+function util.functions:generateRandom(limit)
+	math.randomseed(os.time())
+	local result = ""
+	for i = 1, limit do
+		local randomIndex = math.random(1, #random)
+		local randomValue = random[randomIndex]
+
+		if randomValue:match("%a") then
+			if math.random(0, 1) == 1 then
+				randomValue = randomValue:upper()
+			end
+		end
+
+		result = result .. randomValue
+	end
+	return result
 end
 
 return util
