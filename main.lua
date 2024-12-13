@@ -53,7 +53,6 @@ function util.functions:generateRandom(limit)
 				randomValue = randomValue:upper()
 			end
 		end
-
 		result = result .. randomValue
 	end
 	return result
