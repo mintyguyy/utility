@@ -43,7 +43,7 @@ function util.functions:findFunction(name)
     end
     return retfunc
 end
-function util.funcstion:raycast(startPosition, direction, visualize)
+function util.functions:raycast(startPosition, direction, visualize)
     local raycastParams = RaycastParams.new()
     raycastParams.FilterDescendantsInstances = {game.Players.LocalPlayer.Character, workspace.TargetFilter.EquipmentItems} -- Exclude the player character
     raycastParams.FilterType = Enum.RaycastFilterType.Blacklist
