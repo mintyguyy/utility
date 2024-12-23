@@ -9,6 +9,7 @@ util.services.replicatedStorage = game:GetService("ReplicatedStorage")
 util.services.virtualInputManager = game:GetService("VirtualInputManager")
 util.services.players = game:GetService("Players")
 util.services.runService = game:GetService("RunService")
+util.services.debris = game:GetService("Debris")
 
 function util.functions:getPlayers()
     local players = {}
@@ -41,6 +42,34 @@ function util.functions:findFunction(name)
         end
     end
     return retfunc
+end
+function util.funcstion:raycast(startPosition, direction, visualize)
+    local raycastParams = RaycastParams.new()
+    raycastParams.FilterDescendantsInstances = {game.Players.LocalPlayer.Character, workspace.TargetFilter.EquipmentItems} -- Exclude the player character
+    raycastParams.FilterType = Enum.RaycastFilterType.Blacklist
+
+    local raycastResult = workspace:Raycast(startPosition, direction, raycastParams)
+
+    if visualize then
+        local beam = Instance.new("Part")
+        beam.Anchored = true
+        beam.CanCollide = false
+        beam.Size = Vector3.new(0.05, 0.05, direction.Magnitude)
+        beam.CFrame = CFrame.new(startPosition, startPosition + direction) * CFrame.new(0, 0, -direction.Magnitude / 2)
+        beam.Color = Color3.fromRGB(255, 0, 0)
+        beam.Parent = workspace
+
+        util.services.debris:AddItem(beam, 1)
+    end
+
+    if raycastResult then
+        local hitPos = raycastResult.Position
+        local hitMaterial = tostring(raycastResult.Material)
+
+        return hitPos, hitMaterial
+    else
+        return nil, nil
+    end
 end
 function util.functions:generateRandom(limit)
 	math.randomseed(os.time())
