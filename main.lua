@@ -6,6 +6,7 @@ util.functions = {}
 util.variables.random = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "_", ",", "."}
 
 util.services.replicatedStorage = game:GetService("ReplicatedStorage")
+util.services.teleportService = game:GetService("TeleportService")
 util.services.virtualInputManager = game:GetService("VirtualInputManager")
 util.services.players = game:GetService("Players")
 util.services.runService = game:GetService("RunService")
@@ -74,6 +75,7 @@ end
 function util.functions:generateRandom(limit)
 	math.randomseed(os.time())
 	local result = ""
+	
 	for i = 1, limit do
 		local randomIndex = math.random(1, #random)
 		local randomValue = random[randomIndex]
