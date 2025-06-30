@@ -1,10 +1,10 @@
+--VARIABLES
 util = {}
 util.variables = {}
 util.services = {}
 util.functions = {}
 
-util.variables.random = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "_", ",", "."}
-
+--SERVICES
 util.services.replicatedStorage = game:GetService("ReplicatedStorage")
 util.services.teleportService = game:GetService("TeleportService")
 util.services.virtualInputManager = game:GetService("VirtualInputManager")
@@ -12,6 +12,7 @@ util.services.players = game:GetService("Players")
 util.services.runService = game:GetService("RunService")
 util.services.debris = game:GetService("Debris")
 
+--FUNCTIONS
 function util.functions:getPlayers()
     local players = {}
     for _, player in pairs(util.services.players:GetChildren()) do
@@ -34,15 +35,6 @@ function util.functions:getClosestPlayer()
         end
     end
     return closestPlayer
-end
-function util.functions:findFunction(name)
-    local retfunc
-    for _, func in pairs(getgc(true)) do
-        if type(func) == "function" and getinfo(func).name == name and isfunctionhooked(func) == false then
-            retfunc = func
-        end
-    end
-    return retfunc
 end
 function util.functions:raycast(startPosition, direction, visualize, blacklist)
     local raycastParams = RaycastParams.new()
@@ -72,22 +64,6 @@ function util.functions:raycast(startPosition, direction, visualize, blacklist)
         return nil, nil
     end
 end
-function util.functions:generateRandom(limit)
-	math.randomseed(os.time())
-	local result = ""
-	
-	for i = 1, limit do
-		local randomIndex = math.random(1, #random)
-		local randomValue = random[randomIndex]
 
-		if randomValue:match("%a") then
-			if math.random(0, 1) == 1 then
-				randomValue = randomValue:upper()
-			end
-		end
-		result = result .. randomValue
-	end
-	return result
-end
-
+--MAIN
 return util
