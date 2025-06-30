@@ -15,11 +15,13 @@ util.services.debris = game:GetService("Debris")
 --FUNCTIONS
 function util.functions:getPlayers()
     local players = {}
+
     for _, player in pairs(util.services.players:GetChildren()) do
         if player ~= util.services.players.LocalPlayer and player.Character and player.Character.PrimaryPart then
             table.insert(players, player)
         end
     end
+
     return players
 end
 function util.functions:getClosestPlayer()
@@ -29,11 +31,13 @@ function util.functions:getClosestPlayer()
 
     for _, player in pairs(playerTable) do
         local distance = (player.Character.PrimaryPart.Position - util.services.players.LocalPlayer.Character.PrimaryPart.Position).Magnitude
+
         if distance < closestDistance then
             closestDistance = distance
             closestPlayer = player
         end
     end
+
     return closestPlayer
 end
 function util.functions:raycast(startPosition, direction, visualize, blacklist)
@@ -51,7 +55,6 @@ function util.functions:raycast(startPosition, direction, visualize, blacklist)
         beam.CFrame = CFrame.new(startPosition, startPosition + direction) * CFrame.new(0, 0, -direction.Magnitude / 2)
         beam.Color = Color3.fromRGB(255, 0, 0)
         beam.Parent = workspace
-
         util.services.debris:AddItem(beam, 1)
     end
 
