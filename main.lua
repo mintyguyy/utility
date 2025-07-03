@@ -1,6 +1,5 @@
 --VARIABLES
 util = {}
-util.variables = {}
 util.services = {}
 util.functions = {}
 
