@@ -1,34 +1,34 @@
 --VARIABLES
-util = {}
-util.services = {}
-util.functions = {}
+utility = {}
+utility.services = {}
+utility.functions = {}
 
-util.services.replicatedStorage = game:GetService("ReplicatedStorage")
-util.services.teleportService = game:GetService("TeleportService")
-util.services.virtualInputManager = game:GetService("VirtualInputManager")
-util.services.players = game:GetService("Players")
-util.services.runService = game:GetService("RunService")
-util.services.debris = game:GetService("Debris")
+utility.services.replicatedStorage = game:GetService("ReplicatedStorage")
+utility.services.teleportService = game:GetService("TeleportService")
+utility.services.virtualInputManager = game:GetService("VirtualInputManager")
+utility.services.players = game:GetService("Players")
+utility.services.runService = game:GetService("RunService")
+utility.services.debris = game:GetService("Debris")
 
 --FUNCTIONS
-function util.functions:getPlayers()
+function utility.functions:getPlayers()
     local players = {}
 
-    for _, player in pairs(util.services.players:GetChildren()) do
-        if player ~= util.services.players.LocalPlayer and player.Character then
+    for _, player in pairs(utility.services.players:GetChildren()) do
+        if player ~= utility.services.players.LocalPlayer and player.Character then
             table.insert(players, player)
         end
     end
 
     return players
 end
-function util.functions:getClosestPlayer()
-    local playerTable = util.functions:getPlayers()
+function utility.functions:getClosestPlayer()
+    local playerTable = utility.functions:getPlayers()
     local closestPlayer
     local closestDistance = math.huge
 
     for _, player in pairs(playerTable) do
-        local distance = (player.Character.PrimaryPart.Position - util.services.players.LocalPlayer.Character.PrimaryPart.Position).Magnitude
+        local distance = (player.Character.PrimaryPart.Position - utility.services.players.LocalPlayer.Character.PrimaryPart.Position).Magnitude
 
         if distance < closestDistance then
             closestDistance = distance
@@ -38,7 +38,7 @@ function util.functions:getClosestPlayer()
 
     return closestPlayer
 end
-function util.functions:raycast(startPosition, direction, visualize, blacklist)
+function utility.functions:raycast(startPosition, direction, visualize, blacklist)
     local raycastParams = RaycastParams.new()
     raycastParams.FilterDescendantsInstances = blacklist
     raycastParams.FilterType = Enum.RaycastFilterType.Blacklist
@@ -53,11 +53,11 @@ function util.functions:raycast(startPosition, direction, visualize, blacklist)
         beam.CFrame = CFrame.new(startPosition, startPosition + direction) * CFrame.new(0, 0, -direction.Magnitude / 2)
         beam.Color = Color3.fromRGB(255, 0, 0)
         beam.Parent = workspace
-        util.services.debris:AddItem(beam, 1)
+        utility.services.debris:AddItem(beam, 1)
     end
 
     return raycastResult
 end
 
 --MAIN
-return util
+return utility
