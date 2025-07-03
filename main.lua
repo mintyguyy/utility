@@ -3,7 +3,6 @@ util = {}
 util.services = {}
 util.functions = {}
 
---SERVICES
 util.services.replicatedStorage = game:GetService("ReplicatedStorage")
 util.services.teleportService = game:GetService("TeleportService")
 util.services.virtualInputManager = game:GetService("VirtualInputManager")
@@ -16,7 +15,7 @@ function util.functions:getPlayers()
     local players = {}
 
     for _, player in pairs(util.services.players:GetChildren()) do
-        if player ~= util.services.players.LocalPlayer and player.Character and player.Character.PrimaryPart then
+        if player ~= util.services.players.LocalPlayer and player.Character then
             table.insert(players, player)
         end
     end
@@ -57,13 +56,7 @@ function util.functions:raycast(startPosition, direction, visualize, blacklist)
         util.services.debris:AddItem(beam, 1)
     end
 
-    if raycastResult then
-        local hitPos = raycastResult.Position
-        local hitMaterial = tostring(raycastResult.Material)
-
-        return hitPos, hitMaterial
-    else
-        return nil, nil
+    return raycastResult
     end
 end
 
