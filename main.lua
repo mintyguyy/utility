@@ -57,7 +57,6 @@ function util.functions:raycast(startPosition, direction, visualize, blacklist)
     end
 
     return raycastResult
-    end
 end
 
 --MAIN
