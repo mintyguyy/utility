@@ -1,7 +1,5 @@
 --VARIABLES
-utility = {}
-utility.services = {}
-utility.functions = {}
+utility = {services = {}, functions = {}}
 
 utility.services.replicatedStorage = game:GetService("ReplicatedStorage")
 utility.services.teleportService = game:GetService("TeleportService")
